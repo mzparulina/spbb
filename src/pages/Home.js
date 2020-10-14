@@ -1,20 +1,15 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 // import Header from 'components/Header';
-// import styled from 'styled-components';
-import { Row, Col, Carousel, Card, Button, Empty } from 'antd';
+import styled from 'styled-components';
+import { Row, Col, Carousel, Button, Empty } from 'antd';
 // import '../App.css';
 
-function onChange(a, b, c) {
-	console.log(a, b, c);
-}
-
-const contentStyle = {
-	height: '160px',
-	lineHeight: '160px',
-	textAlign: 'center',
-	// background: '#364d79',
-};
+const StyledIntro = styled.div`
+	background: transparent;
+	border: 0;
+	padding: 50px;
+`;
 
 const Home = (props) => {
 	return (
@@ -26,7 +21,7 @@ const Home = (props) => {
 				style={{ minHeight: '555px' }}
 			>
 				<Col span={12}>
-					<Card>
+					<StyledIntro>
 						<h1>SPBB</h1>
 						<h1>4th Quarter</h1>
 						<p>
@@ -38,10 +33,10 @@ const Home = (props) => {
 						</p>
 						<Button>Get Started</Button>
 						<Button>Upload</Button>
-					</Card>
+					</StyledIntro>
 				</Col>
 				<Col span={12}>
-					<Card>
+					<StyledIntro>
 						<Carousel autoplay>
 							<div>
 								<Empty />
@@ -56,7 +51,7 @@ const Home = (props) => {
 								<Empty />
 							</div>
 						</Carousel>
-					</Card>
+					</StyledIntro>
 				</Col>
 			</Row>
 		</div>
