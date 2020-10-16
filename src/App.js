@@ -19,7 +19,12 @@ function App() {
         </Header>
         <Switch>
           {routes.map((route, i) => (
-            <Route key={i} path={route.path} component={route.component} />
+            <Route
+              exact
+              key={i}
+              path={route.path}
+              component={route.component}
+            />
           ))}
         </Switch>
 
