@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Row, Col, Card, Button, Empty } from 'antd';
 import { theme, mq } from '../constants/theme';
-import banner from '../assets/home-banner.jpg';
 
 const StyledDiv = styled.div`
 	@media screen and ${mq.phone.wide.max} {
