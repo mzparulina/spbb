@@ -27,6 +27,7 @@ function App() {
             />
           ))}
         </Switch>
+  
 
         <Footer style={{ textAlign: 'center' }}>SPBB ©2020</Footer>
       </Layout>
