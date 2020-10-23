@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
+import axios from "axios";
 import { Row, Col, Steps, Select, Button, Upload, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
-import { SubmitButton, Input, Form, Cascader } from "formik-antd";
+import { Input, Form } from "formik-antd";
 
-import DataService from "../services/DataService";
 import styled from "styled-components";
 
 const { Step } = Steps;
@@ -51,36 +51,48 @@ const UploadPage = () => {
 	const [divisions, setDivisions] = useState(null);
 	const [districts, setDistricts] = useState(null);
 	const [regions, setRegions] = useState(null);
+	const [songs, setSongs] = useState(null);
 
 	const getUser = async () => {
-		const user = { username: "www", password: "chris" };
-		const users = await DataService.login(user);
+		const userData = { email: "www@mcgi.io", password: "public" };
+		const users = await axios.post("/api/users/login", userData);
 		setUser(users.data);
 	};
 
 	const getRegions = async () => {
 		getUser();
-		const regions = await DataService.getRegions();
+		const regions = await axios.get("/api/regions");
 		setRegions(regions.data);
 	};
 
 	const getDivisions = async () => {
 		getUser();
-		const divisions = await DataService.getDivisions();
+		const divisions = await axios.get("/api/regions");
 		setDivisions(divisions.data);
 	};
 
 	const getDistrict = async () => {
 		getUser();
-		const districts = await DataService.getDistrict();
+		const districts = await axios.get("/api/regions");
 		setDistricts(districts.data);
+	};
+
+	const getSongs = async () => {
+		// getUser();
+		console.log("songs");
+		const songData = await axios.get("/api/songs");
+		// setSongs(songData);
+		console.log(songData);
 	};
 
 	const onStepChange = () => {
 		setCount(count + 1);
+		if (count === 0) getSongs();
 	};
 
-	useEffect(() => {}, []);
+	useEffect(() => {
+		getRegions();
+	});
 
 	const infoForm = (
 		<Form>
@@ -106,9 +118,13 @@ const UploadPage = () => {
 					placeholder="Regions"
 					onChange={getDivisions}
 				>
-					<Option value="jack">Jack</Option>
-					<Option value="lucy">Lucy</Option>
-					<Option value="tom">Tom</Option>
+					{regions && regions.data.length > 0
+						? regions.data.map((region) => (
+								<Option value={region.uuid}>
+									{region.name}
+								</Option>
+						  ))
+						: ""}
 				</Select>
 			</Form.Item>
 			<Form.Item label="Division" name="division" required={true}>
@@ -140,6 +156,19 @@ const UploadPage = () => {
 			<Form.Item
 				name="projectName"
 				label="Project Name"
+				required={true}
+				validate={validationSchema}
+			>
+				<Select showSearch placeholder="" onChange={() => {}}>
+					{songs &&
+						songs.map((songs, index) => (
+							<Option value="songs.name">{songs.name}</Option>
+						))}
+				</Select>
+			</Form.Item>
+			<Form.Item
+				name="projectPart"
+				label="Part Number"
 				required={true}
 				validate={validationSchema}
 			>

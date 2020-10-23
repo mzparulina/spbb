@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 // import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { Row, Col, Card, Button, Empty } from 'antd';
-import { theme, mq } from '../constants/theme';
+import styled from "styled-components";
+import { Row, Col, Card, Empty } from "antd";
+import { mq } from "../constants/theme";
 
 const StyledDiv = styled.div`
 	@media screen and ${mq.phone.wide.max} {
@@ -64,7 +64,7 @@ const Home = (props) => {
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 						Nam ullamcorper nec arcu quis scelerisque. Nam ac massa
 						nunc. Ut porttitor metus sit amet pellentesque rutrum.
-						Nam accumsan interdum lorem non rutrum.{' '}
+						Nam accumsan interdum lorem non rutrum.{" "}
 					</StyledP>
 				</StyledDiv>
 			</Col>
@@ -93,7 +93,7 @@ const Home = (props) => {
 							elit. Nam ullamcorper nec arcu quis scelerisque. Nam
 							ac massa nunc. Ut porttitor metus sit amet
 							pellentesque rutrum. Nam accumsan interdum lorem non
-							rutrum.{' '}
+							rutrum.{" "}
 						</StyledP>
 						<ul>
 							<li>Lorem ipsum dolor sit amet</li>
@@ -112,7 +112,7 @@ const Home = (props) => {
 							elit. Nam ullamcorper nec arcu quis scelerisque. Nam
 							ac massa nunc. Ut porttitor metus sit amet
 							pellentesque rutrum. Nam accumsan interdum lorem non
-							rutrum.{' '}
+							rutrum.{" "}
 						</StyledP>
 						<ul>
 							<li>Lorem ipsum dolor sit amet</li>
@@ -136,7 +136,7 @@ const Home = (props) => {
 					<Card>
 						<Empty></Empty>
 					</Card>
-					<div style={{ textAlign: 'center' }}>
+					<div style={{ textAlign: "center" }}>
 						<StyledList>
 							<li>Lorem ipsum dolor sit amet</li>
 							<li>Lorem ipsum dolor sit amet</li>

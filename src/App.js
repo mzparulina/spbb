@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, Link, useLocation } from "react-router-dom";
 import { Layout, Menu } from "antd";
+import axios from "axios";
 
-import DataService from "./services/DataService";
 import routes from "./routes";
 
 const { Header, Footer } = Layout;
@@ -12,10 +12,9 @@ function App() {
   const [user, setUser] = useState(null);
 
   const getUser = async () => {
-    const user = { username: "www", password: "chris" };
-    const users = await DataService.login(user);
+    const userData = { email: "www@mcgi.io", password: "public" };
+    const users = await axios.post("/api/users/login", userData);
     setUser(users.data);
-    console.log(users);
   };
 
   useEffect(() => {

@@ -12,6 +12,7 @@
     "axios": "^0.20.0",
     "formik": "^2.2.0",
     "formik-antd": "^2.0.1",
+    "http-proxy-middleware": "^1.0.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
