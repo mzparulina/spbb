@@ -60,21 +60,50 @@ const UploadPage = () => {
 	};
 
 	const getRegions = async () => {
-		getUser();
-		const regions = await axios.get("/api/regions");
-		setRegions(regions.data);
+		const userData = { email: "www@mcgi.io", password: "public" };
+		const users = await axios.post("/api/users/login", userData);
+
+		if (users) {
+			let config = { authorization: users.data.data.api_key };
+			const regions = await axios.get("/api/regions", {
+				headers: config,
+			});
+			setRegions(regions.data);
+		}
 	};
 
-	const getDivisions = async () => {
-		getUser();
-		const divisions = await axios.get("/api/regions");
-		setDivisions(divisions.data);
+	const getDivisions = async (value) => {
+		const userData = { email: "www@mcgi.io", password: "public" };
+		const users = await axios.post("/api/users/login", userData);
+
+		if (users) {
+			console.log(value);
+
+			let config = { Authorization: users.data.data.api_key };
+			const divisions = await axios.get(
+				`/api/divisions/regions/${value}`,
+				{
+					headers: config,
+				}
+			);
+			setDivisions(divisions.data);
+		}
 	};
 
-	const getDistrict = async () => {
-		getUser();
-		const districts = await axios.get("/api/regions");
-		setDistricts(districts.data);
+	const getDistrict = async (value) => {
+		const userData = { email: "www@mcgi.io", password: "public" };
+		const users = await axios.post("/api/users/login", userData);
+
+		if (users) {
+			let config = { Authorization: users.data.data.api_key };
+			const districts = await axios.get(
+				`/api/districts/divisions/${value}`,
+				{
+					headers: config,
+				}
+			);
+			setDistricts(districts.data);
+		}
 	};
 
 	const getSongs = async () => {
@@ -92,7 +121,7 @@ const UploadPage = () => {
 
 	useEffect(() => {
 		getRegions();
-	});
+	}, []);
 
 	const infoForm = (
 		<Form>
@@ -113,14 +142,10 @@ const UploadPage = () => {
 				<Input name="lastName" placeholder="Last Name" />
 			</Form.Item>
 			<Form.Item label="Regions" name="regions" required={true}>
-				<Select
-					showSearch
-					placeholder="Regions"
-					onChange={getDivisions}
-				>
+				<Select placeholder="Regions" onChange={getDivisions}>
 					{regions && regions.data.length > 0
-						? regions.data.map((region) => (
-								<Option value={region.uuid}>
+						? regions.data.map((region, key) => (
+								<Option key={key} value={region.uuid}>
 									{region.name}
 								</Option>
 						  ))
@@ -128,21 +153,25 @@ const UploadPage = () => {
 				</Select>
 			</Form.Item>
 			<Form.Item label="Division" name="division" required={true}>
-				<Select
-					showSearch
-					placeholder="Division"
-					onChange={getDistrict}
-				>
-					<Option value="jack">Jack</Option>
-					<Option value="lucy">Lucy</Option>
-					<Option value="tom">Tom</Option>
+				<Select placeholder="Division" onChange={getDistrict}>
+					{divisions && divisions.data.length > 0
+						? divisions.data.map((division, key) => (
+								<Option key={key} value={division.uuid}>
+									{division.name}
+								</Option>
+						  ))
+						: ""}
 				</Select>
 			</Form.Item>
 			<Form.Item label="District" name="district" required={true}>
-				<Select showSearch placeholder="District" onChange={() => {}}>
-					<Option value="jack">Jack</Option>
-					<Option value="lucy">Lucy</Option>
-					<Option value="tom">Tom</Option>
+				<Select placeholder="District">
+					{districts && districts.data.length > 0
+						? districts.data.map((district, key) => (
+								<Option key={key} value={district.uuid}>
+									{district.name}
+								</Option>
+						  ))
+						: ""}
 				</Select>
 			</Form.Item>
 			<Form.Item name="button" onClick={onStepChange}>
@@ -159,7 +188,7 @@ const UploadPage = () => {
 				required={true}
 				validate={validationSchema}
 			>
-				<Select showSearch placeholder="" onChange={() => {}}>
+				<Select placeholder="" onChange={() => {}}>
 					{songs &&
 						songs.map((songs, index) => (
 							<Option value="songs.name">{songs.name}</Option>
@@ -172,7 +201,7 @@ const UploadPage = () => {
 				required={true}
 				validate={validationSchema}
 			>
-				<Select showSearch placeholder="" onChange={() => {}}>
+				<Select placeholder="" onChange={() => {}}>
 					<Option value="jack">Jack</Option>
 					<Option value="lucy">Lucy</Option>
 					<Option value="tom">Tom</Option>
@@ -184,7 +213,7 @@ const UploadPage = () => {
 				required={true}
 				validate={validationSchema}
 			>
-				<Select showSearch placeholder="" onChange={() => {}}>
+				<Select placeholder="" onChange={() => {}}>
 					<Option value="jack">1</Option>
 					<Option value="lucy">2</Option>
 					<Option value="tom">3+</Option>

@@ -4,24 +4,26 @@ import styled from "styled-components";
 import { Row, Col, Card, Empty } from "antd";
 import { mq } from "../constants/theme";
 
+const { Meta } = Card;
+
 const StyledDiv = styled.div`
-	@media screen and ${mq.phone.wide.max} {
-		margin-top: 4rem;
-	}
+	border-radius: 0.3rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	width: 100%;
+	height: 100%;
+	padding: 15rem 5rem;
+`;
 
-	@media screen and (min-width: ${mq.tablet.narrow.minWidth}) {
-		border-radius: 0.3rem;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-around;
-		width: 100%;
-		height: 100%;
-		padding: 16rem 7rem 16rem 5rem;
-	}
-
-	@media only screen and ${mq.desktop.medium.minWidth} {
-		padding: 20rem 7rem 20rem 5rem;
-	}
+const StyledDivContent = styled.div`
+	border-radius: 0.3rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	width: 100%;
+	height: 100%;
+	padding: 10rem 5rem;
 `;
 
 const StyledH1 = styled.div`
@@ -74,35 +76,79 @@ const Home = (props) => {
 				</StyledDiv>
 			</Col>
 			<>
-				<Title>Requirements</Title>
+				<Title>THANKSGIVING MATERIALS</Title>
 				<Col span={12}>
-					<StyledDiv>
-						<Card>
-							<Empty></Empty>
+					<StyledDivContent>
+						<Card title="STUDY FILE: HEAL THE WORLD">
+							<p>
+								The sacrifice of thanksgiving to God should be
+								well-prepared and planned. Please memorize the
+								song we will be singing before recording a video
+								of ourselves. Treat the video recording as if it
+								is our actual thanksgiving already, and not just
+								because we are obligated to record a video and
+								submit. LET US SING WITH GRACE IN OUR HEARTS.
+							</p>
 						</Card>
-					</StyledDiv>
+					</StyledDivContent>
+				</Col>
+				<Col span={12}>
+					<StyledDivContent>
+						<Empty></Empty>
+					</StyledDivContent>
+				</Col>
+				<Col span={12} style={{ textAlign: "center" }}>
+					<StyledDivContent>
+						<StyledH1>
+							<h1>Phone Camera Guidelines</h1>
+						</StyledH1>
+
+						<p>
+							When recording a video using smartphones, record a
+							video in PORTRAIT or Vertical mode if recording
+							individually. Record in LANDSCAPE or HORIZONTAL mode
+							if recording witha a group.
+						</p>
+					</StyledDivContent>
 				</Col>
 
 				<Col span={12}>
-					<StyledDiv>
-						<StyledH1>
-							<h1>Camera Requirements</h1>
-						</StyledH1>
-						<StyledP>
-							Lorem ipsum dolor sit amet, consectetur adipiscing
-							elit. Nam ullamcorper nec arcu quis scelerisque. Nam
-							ac massa nunc. Ut porttitor metus sit amet
-							pellentesque rutrum. Nam accumsan interdum lorem non
-							rutrum.{" "}
-						</StyledP>
-						<ul>
-							<li>Lorem ipsum dolor sit amet</li>
-							<li>Lorem ipsum dolor sit amet</li>
-							<li>Lorem ipsum dolor sit amet</li>
-						</ul>
-					</StyledDiv>
+					<StyledDivContent>
+						<Empty></Empty>
+					</StyledDivContent>
 				</Col>
-				<Col span={12}>
+				<Col span={24}>
+					<Row gutter={16}>
+						<Col span={8}>
+							<Card
+								style={{ height: "370px" }}
+								hoverable
+								cover={<img width={200} height={200} src="" />}
+							>
+								<Meta description="Please use the BACK CAMERA of your phones when recording your thanksgiving videos." />
+							</Card>
+						</Col>
+						<Col span={8}>
+							<Card
+								style={{ height: "370px" }}
+								hoverable
+								cover={<img width={200} height={200} src="" />}
+							>
+								<Meta description="If you can see yourself in the phone screen, you are using the front camera of your phone. Click or tap the FLIP BUTTON to enable the camera in the back of your phone." />
+							</Card>
+						</Col>
+						<Col span={8}>
+							<Card
+								style={{ height: "370px" }}
+								hoverable
+								cover={<img width={200} height={200} src="" />}
+							>
+								<Meta description="4K is the resolution that we will be using when recording. Resolution is the measure of width and height of our videos. Please watch the video for instructions on how to change the settings of your camera resolution." />
+							</Card>
+						</Col>
+					</Row>
+				</Col>
+				<Col span={24}>
 					<StyledDiv>
 						<StyledH1>
 							<h1>Clothes Framing Requirements</h1>
